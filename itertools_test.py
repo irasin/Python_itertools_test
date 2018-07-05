@@ -61,7 +61,7 @@ for i in itertools.cycle((1,2,3)):
 itertools.repeat(element, [,n]) -> iterator
 
 elementを無限回またn回まで重複する
-nが与えないと無限イテレータになる
+nを与えないと無限イテレータになる
 
 eg: repeat(10, 3) --> 10 10 10
 """
@@ -116,7 +116,8 @@ itertools.chain(iterable1, iterable2, ...) -> iterator
 eg: chain.from_iterable(['ABC', 'DEF']) --> A B C D E F
 """
 list(itertools.chain([1, 2, 3], (4, 5, 6))) # -> [1, 2, 3, 4, 5, 6]
-list(itertools.chain(map(str, [1, 2, 3]), map(str, (4, 5, 6)), "aabc")) # -> ['1', '2', '3', '4', '5', '6', 'a', 'a', 'b', 'c']
+list(itertools.chain(map(str, [1, 2, 3]), map(str, (4, 5, 6)), "aabc")) 
+# -> ['1', '2', '3', '4', '5', '6', 'a', 'a', 'b', 'c']
 
 
 """
@@ -148,7 +149,8 @@ iterableの各要素に対して、predicateの評価値が偽になったら、
 
 eg: dropwhile(lambda x: x<5, [1,4,6,4,1]) --> 6 4 1
 """
-list(itertools.dropwhile(lambda x: x < "b", sorted(["a", "r", "e", "c", "d"]))) # -> ['c', 'd', 'e', 'r']
+list(itertools.dropwhile(lambda x: x < "b", sorted(["a", "r", "e", "c", "d"]))) 
+# -> ['c', 'd', 'e', 'r']
 
 
 """
@@ -176,15 +178,18 @@ a = [("b", 3), ("a", 1), ("c", 2), ("a", 2), ("b", 1)]
 a.sort(key=operator.itemgetter(0))
 for (k, g) in itertools.groupby(a, key=operator.itemgetter(0)):
     print("key: {}".format(k), list(g))
-    # key: a [('a', 1), ('a', 2)]
-    # key: b [('b', 1), ('b', 3)]
-    # key: c [('c', 2)]
+# key: a [('a', 1), ('a', 2)]
+# key: b [('b', 1), ('b', 3)]
+# key: c [('c', 2)]
 
 l = [1, 2, 3, 4, 6, 8]
 grouped = itertools.groupby(l, key=lambda x: x%2)
 for k, g in grouped:
     print(list(g))
-
+# [1]
+# [2]
+# [3]
+# [4, 6, 8]
 
 """
 itertools.islice(iterable, [,start], stop, [,step]) -> iterator
@@ -218,6 +223,7 @@ iterableの各要素に指定されたfunctionを適用して計算した結果�
 eg: starmap(pow, [(2,5), (3,2), (10,3)]) --> 32 9 1000
 """
 list(itertools.starmap(lambda x, y, z: (x - y)**z, [(1, 2, 2), (2, 0, 3), (3, 1, 4)]))
+# -> [1, 8, 16]
 
 
 """
